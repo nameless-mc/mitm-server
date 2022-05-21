@@ -1,7 +1,27 @@
 import express from 'express';
+import session from 'express-session';
 import errorHandler from './error';
 import config from './config';
+import signinResource from './resource/signin_resource';
+import managementResource from './resource/management_resource';
 const app: express.Express = express();
+
+declare module 'express-session' {
+  // eslint-disable-next-line no-unused-vars
+  interface SessionData {
+    user_id: string;
+    signin_id: string;
+    pass: string;
+  }
+}
+
+export const sessionOpt = {
+  secret: 'secret',
+  cookie: {maxAge: 60 * 60 * 1000},
+};
+
+app.use(session(sessionOpt));
+
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
@@ -20,6 +40,10 @@ app.use(
 app.listen(config.port, () => {
   console.log('Start on port ' + config.port + '.');
 });
+
+app.use(config.apiBasePath + '/signin', signinResource);
+
+app.use('/management', managementResource);
 
 // eslint-disable-next-line
 app.use(errorHandler);
