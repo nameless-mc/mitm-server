@@ -88,8 +88,8 @@ export const createCompany = async (
     return c
         .query(
             'insert into companies' +
-            '(id, user_id, name, industry, status, url, note)' +
-            ' values(?, ?, ?, ?, ?, ?, ?)',
+          '(id, user_id, name, industry, status, url, note)' +
+          ' values(?, ?, ?, ?, ?, ?, ?)',
             [
               company.id,
               company.user?.id,
@@ -104,6 +104,56 @@ export const createCompany = async (
           return badRequestException();
         });
     c.end();
+  });
+  if (res instanceof Error) {
+    throw badRequestException();
+  }
+  return company;
+};
+
+export const updateCompany = async (
+    user: User,
+    data: {
+    id: Number;
+    name: string;
+    industry?: string;
+    status?: string;
+    url?: string;
+    note?: string;
+  },
+): Promise<Company> => {
+  const oldData = await getCompany(user, data.id.toString());
+  const company: Company = {
+    id: data.id,
+    userId: user.id,
+    user: user,
+    name: data.name || oldData.name,
+    industry: data.industry || oldData.industry,
+    status: data.status || oldData.status,
+    url: data.url || oldData.url,
+    note: data.note || oldData.note,
+  };
+  const res = await connection().then((c: Connection) => {
+    return c
+        .query(
+            'update companies c set ' +
+          'c.id = ?, c.user_id = ?, c.name = ?, c.industry = ?' +
+          ', c.status = ?, c.url = ?, c.note = ?' +
+          ' where c.id = ?',
+            [
+              company.id,
+              company.user?.id,
+              company.name,
+              company.industry,
+              company.status,
+              company.url,
+              company.note,
+              company.id,
+            ],
+        )
+        .catch(() => {
+          return badRequestException();
+        });
   });
   if (res instanceof Error) {
     throw badRequestException();

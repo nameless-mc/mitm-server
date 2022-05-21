@@ -3,6 +3,7 @@ import {
   createCompany,
   getCompanies,
   getCompany,
+  updateCompany,
 } from '../service/companies_service';
 import {checkSessionAndGetUser} from '../service/users_service';
 
@@ -81,6 +82,39 @@ router.get(
         status: company.status,
         url: company.url,
       });
+    },
+);
+
+router.put(
+    '/:companyId',
+    async (req: express.Request, res: express.Response, next) => {
+      const companyId = req.params.companyId;
+      let user;
+      try {
+        user = await checkSessionAndGetUser(req.session);
+      } catch (e) {
+        return next(e);
+      }
+      try {
+        const company = await updateCompany(user, {
+          id: parseInt(companyId),
+          name: req.body.name,
+          industry: req.body.industry,
+          status: req.body.status,
+          url: req.body.url,
+          note: req.body.note,
+        });
+
+        res.send({
+          id: company.id,
+          name: company.name,
+          industry: company.industry,
+          status: company.status,
+          url: company.url,
+        });
+      } catch (e) {
+        return next(e);
+      }
     },
 );
 
