@@ -1,5 +1,19 @@
 version: "3"
 services:
+  web:
+    build: ./web-api
+    ports:
+      - 80:3000
+    environment:
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_USER=mitm
+      - DB_PASSWORD=mitm
+      - DB_DATABASE=mitm
+    depends_on:
+      - db
+    networks:
+      - mitm-network
   db:
     image: mysql:8.0
     platform: linux/x86_64
