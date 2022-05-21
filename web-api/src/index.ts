@@ -43,7 +43,7 @@ app.listen(config.port, () => {
   console.log('Start on port ' + config.port + '.');
 });
 
-app.use("/api/schedules",schedulesResource);
+app.use(config.apiBasePath + '/schedules',schedulesResource);
 
 app.use(config.apiBasePath + '/signin', signinResource);
 
