@@ -1,8 +1,9 @@
-import connection from "../db"
+import connection from '../db';
+import {User} from './users_service';
 
 const getCompanyNameById=async (id:BigInt)=>{
     const companyDatas=await connection().then((c)=>{
-        const datas = c.query("SELECT name FROM companies where id="+id);
+        const datas = c.query('SELECT name FROM companies where id='+id);
         c.end();
         return datas;
     });
@@ -12,9 +13,9 @@ const getCompanyNameById=async (id:BigInt)=>{
     return companyDatas[0].name;
 }
 
-export const getSchedules=async ()=>{
+export const getSchedules=async (user:User)=>{
     const scheduleDatas=await connection().then((c)=>{
-        const datas=c.query("SELECT id,title,company_id,url,note,date FROM schedules");
+        const datas=c.query('SELECT id,title,company_id,url,note,date FROM schedules WHERE user_id=?',[user.id]);
         c.end();
         return datas;
     });
