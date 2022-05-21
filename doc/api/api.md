@@ -19,7 +19,7 @@ POST /api/signin
 
 #### 成功時
 
-302 Found
+200 OK
 
 ※cokkie にログイン情報を埋め込み
 

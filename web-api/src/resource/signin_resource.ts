@@ -19,7 +19,7 @@ router.post('/', async (req: express.Request, res: express.Response, next) => {
   req.session.signin_id = user.signinId;
   req.session.pass = user.pass;
   req.session.save();
-  res.redirect('/home');
+  res.send();
 });
 
 export default router;
