@@ -1,6 +1,7 @@
 import express from 'express';
 import errorHandler from './error';
 import config from './config';
+import schedulesResource from './resource/schedules_resource'
 const app: express.Express = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -20,6 +21,8 @@ app.use(
 app.listen(config.port, () => {
   console.log('Start on port ' + config.port + '.');
 });
+
+app.use("/api/schedules",schedulesResource);
 
 // eslint-disable-next-line
 app.use(errorHandler);
