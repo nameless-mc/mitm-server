@@ -2,12 +2,14 @@
 
 ## users
 
-| param     | type   | option          |
-| --------- | ------ | --------------- |
-| id        | BIGINT | pk              |
-| name      | string | NOT NULL        |
-| signin_id | string | NOT NULL unique |
-| pass      | string | NOT NULL        |
+| param      | type        | option          |
+| ---------- | ----------- | --------------- |
+| id         | BIGINT      | pk              |
+| name       | VARCHAR(45) | NOT NULL        |
+| signin_id  | VARCHAR(45) | NOT NULL unique |
+| pass       | VARCHAR(45) | NOT NULL        |
+| updated_at | TIMESTAMP   | NOT NULL        |
+| created_at | TIMESTAMP   | NOT NULL        |
 
 ## schedules
 
@@ -15,21 +17,24 @@
 | ---------- | ------------- | -------- |
 | id         | BIGINT        | pk       |
 | user_id    | BIGINT        | fk       |
-| title      | VARCHAR(20)   | NOT NULL |
+| title      | VARCHAR(45)   | NOT NULL |
 | company_id | BIGINT        | fk       |
 | url        | VARCHAR(2083) |
-| note       | VARCHAR(1000) | NOT NULL |
-| date       | DATE          | NOT NULL |
-| update_at  | DATE          | NOT NULL |
-| version    | INT           | NOT NULL |
+| note       | VARCHAR(1000) |
+| date       | DATETIME      | NOT NULL |
+| updated_at | TIMESTAMP     | NOT NULL |
+| created_at | TIMESTAMP     | NOT NULL |
 
-## company
+## companies
 
-| param    | type          | option   |
-| -------- | ------------- | -------- |
-| id       | BIGINT        | pk       |
-| user_id  | BIGINT        | fk       |
-| name     | VARCHAR(20)   | NOT NULL |
-| industry | VARCHAR(10)   |
-| status   | VARCHAR(10)   |
-| url      | VARCHAR(2083) |
+| param      | type          | option   |
+| ---------- | ------------- | -------- |
+| id         | BIGINT        | pk       |
+| user_id    | BIGINT        | fk       |
+| name       | VARCHAR(45)   | NOT NULL |
+| industry   | VARCHAR(45)   |
+| status     | VARCHAR(45)   |
+| url        | VARCHAR(2083) |
+| note       | VARCHAR(1000) |
+| updated_at | TIMESTAMP     | NOT NULL |
+| created_at | TIMESTAMP     | NOT NULL |
