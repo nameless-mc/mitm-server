@@ -21,7 +21,8 @@
 | company_id | BIGINT        | fk       |
 | url        | VARCHAR(2083) |
 | note       | VARCHAR(1000) |
-| date       | DATETIME      | NOT NULL |
+| start      | DATETIME      | NOT NULL |
+| end        | DATETIME      | NOT NULL |
 | updated_at | TIMESTAMP     | NOT NULL |
 | created_at | TIMESTAMP     | NOT NULL |
 

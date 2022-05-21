@@ -20,7 +20,8 @@ GET /api/schedules
 | schedule[].company_name | string | 会社名               |
 | schedule[].url          | array  | url                  |
 | schedule[].note         | string | メモ                 |
-| schedule[].date         | Date   | 日程（ISO 8601 形式) |
+| schedule[].start        | Date   | 日程（ISO 8601 形式) |
+| schedule[].end          | Date   | 日程（ISO 8601 形式) |
 
 ```javascript
 {
@@ -32,7 +33,8 @@ GET /api/schedules
             "company_name": string,
             "url":string,
             "note": string,
-            "date": Date
+            "start": Date,
+            "end": Date,
         },
         ...
     ]
@@ -59,7 +61,8 @@ GET /api/schedules/{schedule_id}
 | company_name | string | 会社名               |
 | url          | array  | url                  |
 | note         | string | メモ                 |
-| date         | Date   | 日程（ISO 8601 形式) |
+| start        | Date   | 日程（ISO 8601 形式) |
+| end          | Date   | 日程（ISO 8601 形式) |
 
 ```javascript
 {
@@ -69,7 +72,8 @@ GET /api/schedules/{schedule_id}
     "company_name": string,
     "url":string,
     "note": string,
-    "date": Date
+    "start": Date,
+    "end": Date,
 }
 ```
 
@@ -88,7 +92,8 @@ POST /api/schedules
 | company_name | string | 会社名               |
 | url          | array  | url                  |
 | note         | string | メモ                 |
-| date         | Date   | 日程（ISO 8601 形式) |
+| start        | Date   | 日程（ISO 8601 形式) |
+| end          | Date   | 日程（ISO 8601 形式) |
 
 ```javascript
 {
@@ -97,7 +102,8 @@ POST /api/schedules
     "company_name": string,
     "url":string,
     "note": string,
-    "date": Date
+    "start": Date,
+    "end": Date,
 }
 ```
 
@@ -111,7 +117,8 @@ POST /api/schedules
 | company_name | string | 会社名               |
 | url          | array  | url                  |
 | note         | string | メモ                 |
-| date         | Date   | 日程（ISO 8601 形式) |
+| start        | Date   | 日程（ISO 8601 形式) |
+| end          | Date   | 日程（ISO 8601 形式) |
 
 ```javascript
 {
@@ -121,7 +128,8 @@ POST /api/schedules
     "company_name": string,
     "url":string,
     "note": string,
-    "date": Date
+    "start": Date,
+    "end": Date,
 }
 ```
 
@@ -140,7 +148,8 @@ POST /api/schedules/{schedule_id}
 | company_name | string | 会社名               |
 | url          | array  | url                  |
 | note         | string | メモ                 |
-| date         | Date   | 日程（ISO 8601 形式) |
+| start        | Date   | 日程（ISO 8601 形式) |
+| end          | Date   | 日程（ISO 8601 形式) |
 
 ```javascript
 {
@@ -149,7 +158,8 @@ POST /api/schedules/{schedule_id}
     "company_name": string,
     "url":string,
     "note": string,
-    "date": Date
+    "start": Date,
+    "end": Date,
 }
 ```
 
@@ -163,7 +173,8 @@ POST /api/schedules/{schedule_id}
 | company_name | string | 会社名               |
 | url          | array  | url                  |
 | note         | string | メモ                 |
-| date         | Date   | 日程（ISO 8601 形式) |
+| start        | Date   | 日程（ISO 8601 形式) |
+| end          | Date   | 日程（ISO 8601 形式) |
 
 ```javascript
 {
@@ -173,7 +184,8 @@ POST /api/schedules/{schedule_id}
     "company_name": string,
     "url":string,
     "note": string,
-    "date": Date
+    "start": Date,
+    "end": Date,
 }
 ```
 

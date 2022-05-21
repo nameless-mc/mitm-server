@@ -87,7 +87,8 @@ GET /api/companies/{company_id}/schedules
 | schedule[].company_name | string | 会社名               |
 | schedule[].url          | array  | url                  |
 | schedule[].note         | string | メモ                 |
-| schedule[].date         | Date   | 日程（ISO 8601 形式) |
+| schedule[].start        | Date   | 日程（ISO 8601 形式) |
+| schedule[].end          | Date   | 日程（ISO 8601 形式) |
 
 ```javascript
 {
@@ -99,7 +100,8 @@ GET /api/companies/{company_id}/schedules
             "company_name": string,
             "url":string,
             "note": string,
-            "date": Date
+            "start": Date,
+            "end": Date,
         },
         ...
     ]
