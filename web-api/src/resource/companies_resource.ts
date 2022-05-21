@@ -1,6 +1,7 @@
 import express from 'express';
 import {
   createCompany,
+  deleteCompany,
   getCompanies,
   getCompany,
   updateCompany,
@@ -118,4 +119,22 @@ router.put(
     },
 );
 
+router.delete(
+    '/:companyId',
+    async (req: express.Request, res: express.Response, next) => {
+      const companyId = req.params.companyId;
+      let user;
+      try {
+        user = await checkSessionAndGetUser(req.session);
+      } catch (e) {
+        return next(e);
+      }
+      try {
+        await deleteCompany(user, companyId);
+        res.status(204).send();
+      } catch (e) {
+        return next(e);
+      }
+    },
+);
 export default router;

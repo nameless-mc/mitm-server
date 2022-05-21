@@ -160,3 +160,16 @@ export const updateCompany = async (
   }
   return company;
 };
+
+export const deleteCompany =async (user:User, companyId: string) => {
+  const res = await connection().then((c: Connection) => {
+    return c
+        .query('delete from companies c where c.id = ?', [companyId])
+        .catch(() => {
+          return badRequestException();
+        });
+  });
+  if (res instanceof Error) {
+    throw badRequestException();
+  }
+};
