@@ -17,6 +17,7 @@ GET /api/companies
 | industry | string | 業種        |
 | status   | string | 選考の状態  |
 | url      | string | URL         |
+| note     | string | メモ        |
 
 ```javascript
 {
@@ -26,7 +27,8 @@ GET /api/companies
             "name": string,
             "industry": string,
             "status": string,
-            "url": string
+            "url": string,
+            "note": string,
         },
         ...
     ]
@@ -52,6 +54,7 @@ GET /api/companies/{company_id}
 | industry | string | 業種        |
 | status   | string | 選考の状態  |
 | url      | string | URL         |
+| note     | string | メモ        |
 
 ```javascript
 {
@@ -59,7 +62,8 @@ GET /api/companies/{company_id}
     "name": string,
     "industry": string,
     "status": string,
-    "url": string
+    "url": string,
+    "note": string,
 },
 ```
 
@@ -116,14 +120,16 @@ POST /api/companies/
 | industry | string | 業種        |
 | status   | string | 選考の状態  |
 | url      | string | URL         |
+| note     | string | メモ        |
 
 ```javascript
 {
     "name": string,
     "industry": string,
     "status": string,
-    "url": string
-},
+    "url": string,
+    "note": string,
+}
 ```
 
 ### レスポンス
@@ -137,6 +143,7 @@ POST /api/companies/
 | industry | string | 業種        |
 | status   | string | 選考の状態  |
 | url      | string | URL         |
+| note     | string | メモ        |
 
 ```javascript
 {
@@ -144,7 +151,8 @@ POST /api/companies/
     "name": string,
     "industry": string,
     "status": string,
-    "url": string
+    "url": string,
+    "note": string,
 },
 ```
 
@@ -162,13 +170,15 @@ PUT /api/companies/{company_id}
 | industry | string | 業種        |
 | status   | string | 選考の状態  |
 | url      | string | URL         |
+| note     | string | メモ        |
 
 ```javascript
 {
     "name": string,
     "industry": string,
     "status": string,
-    "url": string
+    "url": string,
+    "note": string,
 },
 ```
 
@@ -183,6 +193,7 @@ PUT /api/companies/{company_id}
 | industry | string | 業種        |
 | status   | string | 選考の状態  |
 | url      | string | URL         |
+| note     | string | メモ        |
 
 ```javascript
 {
@@ -191,6 +202,7 @@ PUT /api/companies/{company_id}
     "industry": string,
     "status": string,
     "url": string
+    "note": string,
 },
 ```
 

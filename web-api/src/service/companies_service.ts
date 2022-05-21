@@ -1,6 +1,6 @@
 import {Connection} from 'promise-mysql';
-import connection from '../db';
-import {notFoundException} from '../error';
+import connection, {idgen} from '../db';
+import {badRequestException, notFoundException} from '../error';
 import {User} from './users_service';
 
 export interface Company {
@@ -62,4 +62,51 @@ export const getCompany = async (
     note: c.note,
     status: c.status,
   };
+};
+
+export const createCompany = async (
+    user: User,
+    data: {
+    name: string;
+    industry?: string;
+    status?: string;
+    url?: string;
+    note?: string;
+  },
+): Promise<Company> => {
+  const company: Company = {
+    id: idgen(),
+    userId: user.id,
+    user: user,
+    name: data.name,
+    industry: data.industry,
+    status: data.status,
+    url: data.url,
+    note: data.note,
+  };
+  const res = await connection().then((c: Connection) => {
+    return c
+        .query(
+            'insert into companies' +
+            '(id, user_id, name, industry, status, url, note)' +
+            ' values(?, ?, ?, ?, ?, ?, ?)',
+            [
+              company.id,
+              company.user?.id,
+              company.name,
+              company.industry,
+              company.status,
+              company.url,
+              company.note,
+            ],
+        )
+        .catch(() => {
+          return badRequestException();
+        });
+    c.end();
+  });
+  if (res instanceof Error) {
+    throw badRequestException();
+  }
+  return company;
 };
