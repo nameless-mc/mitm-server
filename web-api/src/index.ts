@@ -2,6 +2,7 @@ import express from 'express';
 import session from 'express-session';
 import errorHandler from './error';
 import config from './config';
+import schedulesResource from './resource/schedules_resource'
 import signinResource from './resource/signin_resource';
 import companiesResource from './resource/companies_resource';
 import managementResource from './resource/management_resource';
@@ -41,6 +42,8 @@ app.use(
 app.listen(config.port, () => {
   console.log('Start on port ' + config.port + '.');
 });
+
+app.use(config.apiBasePath + '/schedules',schedulesResource);
 
 app.use(config.apiBasePath + '/signin', signinResource);
 
