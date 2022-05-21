@@ -3,6 +3,7 @@ import session from 'express-session';
 import errorHandler from './error';
 import config from './config';
 import signinResource from './resource/signin_resource';
+import companiesResource from './resource/companies_resource';
 import managementResource from './resource/management_resource';
 const app: express.Express = express();
 
@@ -42,6 +43,8 @@ app.listen(config.port, () => {
 });
 
 app.use(config.apiBasePath + '/signin', signinResource);
+
+app.use(config.apiBasePath + '/companies', companiesResource);
 
 app.use('/management', managementResource);
 
