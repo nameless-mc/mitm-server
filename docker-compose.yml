@@ -1,0 +1,23 @@
+version: "3"
+services:
+  db:
+    image: mysql:8.0
+    platform: linux/x86_64
+    volumes:
+      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+      - ./docker/db/initdb.d:/docker-entrypoint-initdb.d
+      - ./docker/db/data:/var/lib/mysql
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=mitm
+      - MYSQL_USER=mitm
+      - MYSQL_PASSWORD=mitm
+      - TZ=Asia/Tokyo
+    ports:
+      - 3306:3306
+    networks:
+      - mitm-network
+
+networks:
+  mitm-network:
+    driver: bridge
