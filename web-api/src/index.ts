@@ -10,11 +10,11 @@ const fs = require('fs');
 const app: express.Express = express();
 
 const server = require('https').createServer(
-  {
-    key: fs.readFileSync('./data/privatekey.pem'),
-    cert: fs.readFileSync('./data/cert.pem'),
-  },
-  app
+    {
+      key: fs.readFileSync('./data/privatekey.pem'),
+      cert: fs.readFileSync('./data/cert.pem'),
+    },
+    app,
 );
 
 declare module 'express-session' {
@@ -28,7 +28,7 @@ declare module 'express-session' {
 
 export const sessionOpt = {
   secret: 'secret',
-  cookie: { maxAge: 60 * 60 * 1000, sameSite: 'none' as const, secure: true },
+  cookie: {maxAge: 60 * 60 * 1000, sameSite: 'none' as const, secure: true},
 };
 
 app.use(session(sessionOpt));
