@@ -32,7 +32,7 @@ app.use(
     (req: express.Request,
         res: express.Response,
         next: express.NextFunction) => {
-      res.header('Access-Control-Allow-Origin', 'https://localhost:8080');
+      res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
       res.header('Access-Control-Allow-Methods', 'POST, GET, DELETE, PUT');
       res.header(
           'Access-Control-Allow-Headers',
