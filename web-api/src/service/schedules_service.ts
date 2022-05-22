@@ -1,5 +1,6 @@
 import connection from '../db';
 import {User} from './users_service';
+import { notFoundException } from '../error';
 
 const getCompanyNameById=async (id:BigInt)=>{
   const companyDatas=await connection().then((c)=>{
@@ -35,3 +36,25 @@ export const getSchedules=async (user:User)=>{
   }
   return schedules;
 };
+
+export const getScheduleById=async (id:number)=>{
+  const scheduleDatas=await connection().then((c)=>{
+    const datas=c.query(
+        'SELECT id,title,company_id,url,note,start,end' +
+        'FROM schedules WHERE id=?'
+        , [id],
+    );
+    c.end();
+    return datas;
+  });
+  if(!scheduleDatas||scheduleDatas.length==0){
+    throw notFoundException('schedule not found', 'SCHEDULE');
+  }
+  const companyName:string=await getCompanyNameById(scheduleDatas[0].company_id);
+  if (!companyName) {
+    throw notFoundException();
+  }
+  const schedule:object={company_name: companyName};
+  Object.assign(schedule, scheduleDatas[0]);
+  return schedule;
+}
