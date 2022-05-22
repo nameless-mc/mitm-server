@@ -28,8 +28,8 @@ declare module 'express-session' {
 
 export const sessionOpt = {
   secret: 'secret',
-  cookie: {maxAge: 60 * 60 * 1000, SameSite: 'None'},
-  secure: true,
+  cookie: { maxAge: 60 * 60 * 1000, sameSite: 'none', secure: true },
+  
 };
 
 app.use(session(sessionOpt));
