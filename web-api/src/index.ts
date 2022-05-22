@@ -20,6 +20,7 @@ declare module 'express-session' {
 export const sessionOpt = {
   secret: 'secret',
   cookie: {maxAge: 60 * 60 * 1000, SameSite: 'none'},
+  resave: false,
 };
 
 app.use(session(sessionOpt));
