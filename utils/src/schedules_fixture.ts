@@ -10,14 +10,16 @@ export interface Schedule {
   company?: Company;
   url?: string;
   note?: string;
-  date: Date;
+  start: Date;
+  end: Date;
 }
 
 export default class ScheduleFixture {
   private schedule: Schedule = {
     id: idgen(),
     title: 'title',
-    date: new Date(),
+    start: new Date(),
+    end: new Date(),
   };
 
   public id(id: number): ScheduleFixture {
@@ -30,8 +32,13 @@ export default class ScheduleFixture {
     return this;
   }
 
-  public date(date: Date): ScheduleFixture {
-    this.schedule.date = date;
+  public start(start: Date): ScheduleFixture {
+    this.schedule.start = start;
+    return this;
+  }
+
+  public end(end: Date): ScheduleFixture {
+    this.schedule.end = end;
     return this;
   }
 
@@ -60,7 +67,7 @@ export default class ScheduleFixture {
 
     await connection().then((c: Connection) => {
       c.query(
-        'insert into schedules(id, user_id, title, company_id, url, note, date) values(?, ?, ?, ?, ?, ?, ?)',
+        'insert into schedules(id, user_id, title, company_id, url, note, start, end) values(?, ?, ?, ?, ?, ?, ?, ?)',
         [
           this.schedule.id,
           this.schedule.user?.id,
@@ -68,7 +75,8 @@ export default class ScheduleFixture {
           this.schedule.company?.id,
           this.schedule.url,
           this.schedule.note,
-          this.schedule.date,
+          this.schedule.start,
+          this.schedule.end,
         ]
       );
       c.end();

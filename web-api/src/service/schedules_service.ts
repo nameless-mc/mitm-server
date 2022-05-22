@@ -17,7 +17,7 @@ const getCompanyNameById=async (id:BigInt)=>{
 export const getSchedules=async (user:User)=>{
   const scheduleDatas=await connection().then((c)=>{
     const datas=c.query(
-        'SELECT id,title,company_id,url,note,start,end' +
+        'SELECT id,title,company_id,url,note,start,end ' +
             'FROM schedules WHERE user_id=?'
         , [user.id],
     );

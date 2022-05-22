@@ -17,6 +17,7 @@ GET /api/companies
 | industry | string | 業種        |
 | status   | string | 選考の状態  |
 | url      | string | URL         |
+| note     | string | メモ        |
 
 ```javascript
 {
@@ -26,7 +27,8 @@ GET /api/companies
             "name": string,
             "industry": string,
             "status": string,
-            "url": string
+            "url": string,
+            "note": string,
         },
         ...
     ]
@@ -52,6 +54,7 @@ GET /api/companies/{company_id}
 | industry | string | 業種        |
 | status   | string | 選考の状態  |
 | url      | string | URL         |
+| note     | string | メモ        |
 
 ```javascript
 {
@@ -59,7 +62,8 @@ GET /api/companies/{company_id}
     "name": string,
     "industry": string,
     "status": string,
-    "url": string
+    "url": string,
+    "note": string,
 },
 ```
 
@@ -83,7 +87,8 @@ GET /api/companies/{company_id}/schedules
 | schedule[].company_name | string | 会社名               |
 | schedule[].url          | array  | url                  |
 | schedule[].note         | string | メモ                 |
-| schedule[].date         | Date   | 日程（ISO 8601 形式) |
+| schedule[].start        | Date   | 日程（ISO 8601 形式) |
+| schedule[].end          | Date   | 日程（ISO 8601 形式) |
 
 ```javascript
 {
@@ -95,7 +100,8 @@ GET /api/companies/{company_id}/schedules
             "company_name": string,
             "url":string,
             "note": string,
-            "date": Date
+            "start": Date,
+            "end": Date,
         },
         ...
     ]
@@ -116,14 +122,16 @@ POST /api/companies/
 | industry | string | 業種        |
 | status   | string | 選考の状態  |
 | url      | string | URL         |
+| note     | string | メモ        |
 
 ```javascript
 {
     "name": string,
     "industry": string,
     "status": string,
-    "url": string
-},
+    "url": string,
+    "note": string,
+}
 ```
 
 ### レスポンス
@@ -137,6 +145,7 @@ POST /api/companies/
 | industry | string | 業種        |
 | status   | string | 選考の状態  |
 | url      | string | URL         |
+| note     | string | メモ        |
 
 ```javascript
 {
@@ -144,7 +153,8 @@ POST /api/companies/
     "name": string,
     "industry": string,
     "status": string,
-    "url": string
+    "url": string,
+    "note": string,
 },
 ```
 
@@ -162,13 +172,15 @@ PUT /api/companies/{company_id}
 | industry | string | 業種        |
 | status   | string | 選考の状態  |
 | url      | string | URL         |
+| note     | string | メモ        |
 
 ```javascript
 {
     "name": string,
     "industry": string,
     "status": string,
-    "url": string
+    "url": string,
+    "note": string,
 },
 ```
 
@@ -183,6 +195,7 @@ PUT /api/companies/{company_id}
 | industry | string | 業種        |
 | status   | string | 選考の状態  |
 | url      | string | URL         |
+| note     | string | メモ        |
 
 ```javascript
 {
@@ -191,6 +204,7 @@ PUT /api/companies/{company_id}
     "industry": string,
     "status": string,
     "url": string
+    "note": string,
 },
 ```
 
