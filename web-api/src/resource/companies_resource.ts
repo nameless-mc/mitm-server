@@ -13,6 +13,7 @@ const router = express.Router();
 
 router.get('/', async (req: express.Request, res: express.Response, next) => {
   let user;
+  console.log(req.session);
   try {
     user = await checkSessionAndGetUser(req.session);
   } catch (e) {
