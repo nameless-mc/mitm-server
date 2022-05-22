@@ -39,6 +39,7 @@ app.use(
           'X-Requested-With, Origin, X-Csrftoken, Content-Type, Accept',
       );
       res.header('Access-Control-Allow-Credentials', 'true');
+      req.session.save();
       next();
     },
 );
