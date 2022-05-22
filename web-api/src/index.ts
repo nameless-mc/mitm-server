@@ -19,7 +19,7 @@ declare module 'express-session' {
 
 export const sessionOpt = {
   secret: 'secret',
-  cookie: {maxAge: 60 * 60 * 1000, SameSite: 'none'},
+  cookie: {maxAge: 60 * 60 * 1000, sameSite: 'none' as const},
 };
 
 app.use(session(sessionOpt));
@@ -32,7 +32,7 @@ app.use(
     (req: express.Request,
         res: express.Response,
         next: express.NextFunction) => {
-      res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+      res.header('Access-Control-Allow-Origin', 'https://localhost:8080');
       res.header('Access-Control-Allow-Methods', 'POST, GET, DELETE, PUT');
       res.header(
           'Access-Control-Allow-Headers',
