@@ -21,6 +21,7 @@ export const sessionOpt = {
   secret: 'secret',
   cookie: {maxAge: 60 * 60 * 1000, SameSite: 'none'},
   resave: false,
+  saveUninitialized: false,
 };
 
 app.use(session(sessionOpt));
